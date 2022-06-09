@@ -1,18 +1,31 @@
-#UC1 checking employee is present r not
+# Add Part time Employee & calculate daily Wage
 
 import random
 
 
-class Employee:
-    @staticmethod
-    def check_attendance():
-        is_present = (random.randint(0, 1))
-        if is_present == 1:
-            print("Employee is present")
+class EmployeeWage:
+    IS_FULL_TIME = 1
+    IS_PART_TIME = 0
+    EMP_WAGE_PER_HOUR = 20
+    employeeHours = 0
+
+    def checkEmpAttendance(self):
+        attendance = random.randint(0, 2)
+        if attendance == EmployeeWage.IS_FULL_TIME:
+            EmployeeWage.employeeHours = 8
+            return "Employee is Present for Full Time"
+        elif attendance == EmployeeWage.IS_PART_TIME:
+            EmployeeWage.employeeHours = 4
+            return "Employee is Present for Part Time"
         else:
-            print("Employee is Absent")
+            return "Employee is Absent"
+
+    def calculateDailyEmpWage(self):
+        dailyWage = EmployeeWage.EMP_WAGE_PER_HOUR * EmployeeWage.employeeHours
+        return "Employee Daily Wage is : " + str(dailyWage)
 
 
-if __name__ == '__main__':
-    print("Welcome To Employee Wage Management System !!\n")
-    Employee.check_attendance()
+if __name__ == "__main__":
+    employee = EmployeeWage()
+    print(employee.checkEmpAttendance())
+    print(employee.calculateDailyEmpWage())
